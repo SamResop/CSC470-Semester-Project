@@ -13,24 +13,58 @@ namespace P5
         public const string EMPTY_DISCOVERY_DATETIME_ERROR = "Must select a Discovery Date/Time";
         public const string FUTURE_DISCOVERY_DATETIME_ERROR = "Issues can't be from the future";
         public const string EMPTY_DISCOVERER_ERROR = "A Discoverer is required";
-        private List<Issue> Issues = new List<Issue>();
+        private static List<Issue> Issues = new List<Issue>();
 
         public const string DUPLICATE_TITLE_ERROR = "Project name already exists.";
 
         public FakeIssueRepository()
         {
+ //           DateTime date = 
+
             if (Issues.Count == 0)
             {
-                Add(new Issue { Id = 1, ProjectId = 1, Title = "SQL Injection Vulnerability", DiscoveryDate = DateTime.Now, Discoverer = "Sam Resop", InitialDescription = "This is a sample issue, pretend I said something smart", Component = "FormLogin", IssueStatusId = 1 });
-                Add(new Issue { Id = 2, ProjectId = 2, Title = "Minor Problem", DiscoveryDate = DateTime.Now, Discoverer = "Sam Resop", InitialDescription = "This is a sample issue but it is minor", Component = "FormMain", IssueStatusId = 2 });
-                Add(new Issue { Id = 3, ProjectId = 3, Title = "Major Problem", DiscoveryDate = DateTime.Now, Discoverer = "Sam Resop", InitialDescription = "Hey, this is a big problem", Component = "FormModifyProject", IssueStatusId = 1 });
-                Add(new Issue { Id = 4, ProjectId = 1, Title = "End of the World Problem", DiscoveryDate = DateTime.Now, Discoverer = "Sam Resop", InitialDescription = "Uh Oh", Component = "FakeIssueRepository", IssueStatusId = 1 });
+                Add(new Issue { Id = 1, ProjectId = 1, Title = "SQL Injection Vulnerability", DiscoveryDate = DateTime.Now, Discoverer = "Dave Bishop", InitialDescription = "This is a sample issue, pretend I said something smart", Component = "FormLogin", IssueStatusId = 1 });
+                Add(new Issue { Id = 2, ProjectId = 2, Title = "Minor Problem", DiscoveryDate = DateTime.Now, Discoverer = "Dave Bishop", InitialDescription = "This is a sample issue but it is minor", Component = "FormMain", IssueStatusId = 2 });
+                Add(new Issue { Id = 3, ProjectId = 3, Title = "Major Problem", DiscoveryDate = DateTime.Now, Discoverer = "Dave Bishop", InitialDescription = "Hey, this is a big problem", Component = "FormModifyProject", IssueStatusId = 1 });
+                Add(new Issue { Id = 4, ProjectId = 1, Title = "End of the World Problem", DiscoveryDate = DateTime.Now, Discoverer = "Dave Bishop", InitialDescription = "Uh Oh", Component = "FakeIssueRepository", IssueStatusId = 1 });
             }
         }
 
         private string ValidateIssue(Issue issue)
         {
-            return null;
+            if (IsDuplicate(issue.Title))
+                return DUPLICATE_TITLE_ERROR;
+            if (issue.Title == "")
+                return EMPTY_TITLE_ERROR;
+
+            FakeAppUserRepository users = new FakeAppUserRepository();
+            List<AppUser> appUsers = users.GetAll();
+
+            if (issue.Discoverer == "")
+                return EMPTY_DISCOVERER_ERROR;
+
+            bool validUser = false;
+            foreach (AppUser a in appUsers)
+                if (issue.Discoverer.Contains(a.FirstName) && issue.Discoverer.Contains(a.LastName))
+                    validUser = true;
+
+            if (!validUser)
+                return "User is not valid";
+
+            DateTime now = DateTime.Now;
+            if (issue.DiscoveryDate == null)
+                return EMPTY_DISCOVERY_DATETIME_ERROR;
+
+            if (issue.DiscoveryDate > now)
+                return FUTURE_DISCOVERY_DATETIME_ERROR;
+
+            FakeIssueStatusRepository statusRepository = new FakeIssueStatusRepository();
+            List<IssueStatus> statuses = statusRepository.GetAll();
+
+            if (issue.IssueStatusId < 1 && issue.IssueStatusId > 6)
+                return "Issue Status is not valid";
+
+            return NO_ERROR;
         }
         private bool IsDuplicate(string title)
         {
@@ -46,14 +80,17 @@ namespace P5
         }
         public string Add(Issue issue)
         {
-            int Id = 0;
             string newName = issue.Title.Trim();
-            if (IsDuplicate(issue.Title))
-                return DUPLICATE_TITLE_ERROR;
-            if (newName == "")
-                return EMPTY_TITLE_ERROR;
-            Issues.Add(issue);
-            return NO_ERROR;
+            issue.Title = newName;
+            string retValue = ValidateIssue(issue);
+
+            if (retValue == "")
+            {
+                Issues.Add(issue);
+                return NO_ERROR;
+            }
+
+            return retValue;
         }
         public List<Issue> GetAll()
         {

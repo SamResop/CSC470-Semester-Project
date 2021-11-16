@@ -132,6 +132,7 @@
             this.issuesRecordToolStripMenuItem.Name = "issuesRecordToolStripMenuItem";
             this.issuesRecordToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.issuesRecordToolStripMenuItem.Text = "&Record";
+            this.issuesRecordToolStripMenuItem.Click += new System.EventHandler(this.issuesRecordToolStripMenuItem_Click);
             // 
             // issuesModifyToolStripMenuItem
             // 

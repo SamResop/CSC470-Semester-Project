@@ -8,11 +8,27 @@ namespace P5
 {
     class FakeIssueStatusRepository : IIssueStatusRepository
     {
-        private List<IssueStatus> IssueStatuses = new List<IssueStatus>();
+        private static List<IssueStatus> IssueStatuses = new List<IssueStatus>();
+
+        public FakeIssueStatusRepository()
+        {
+            if (IssueStatuses.Count == 0)
+            {
+                Add(1, "Open");
+                Add(2, "Assigned");
+                Add(3, "Fixed");
+                Add(4, "Closed - Won't Fix");
+                Add(5, "Closed - Fixed");
+                Add(6, "Closed - By Design");
+            }
+        }
 
         public void Add(int Id, string value)
         {
-
+            IssueStatus issueStatus = new IssueStatus();
+            issueStatus.Id = Id;
+            issueStatus.Value = value;
+            IssueStatuses.Add(issueStatus);
         }
         public List<IssueStatus> GetAll()
         {

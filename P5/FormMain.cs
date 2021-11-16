@@ -92,5 +92,12 @@ namespace P5
             form.ShowDialog();
             form.Dispose();
         }
+
+        private void issuesRecordToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            FormRecordIssue form = new FormRecordIssue(_CurrentAppUser);
+            form.ShowDialog();
+            form.Dispose();
+        }
     }
 }
