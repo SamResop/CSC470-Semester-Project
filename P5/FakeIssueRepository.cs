@@ -19,8 +19,6 @@ namespace P5
 
         public FakeIssueRepository()
         {
- //           DateTime date = 
-
             if (Issues.Count == 0)
             {
                 Add(new Issue { Id = 1, ProjectId = 1, Title = "SQL Injection Vulnerability", DiscoveryDate = DateTime.Now, Discoverer = "Dave Bishop", InitialDescription = "This is a sample issue, pretend I said something smart", Component = "FormLogin", IssueStatusId = 1 });

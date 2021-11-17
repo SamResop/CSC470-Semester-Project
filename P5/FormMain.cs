@@ -5,6 +5,7 @@ namespace P5
     public partial class FormMain : Form
     {
         private AppUser _CurrentAppUser = new AppUser();
+
         public FormMain()
         {
             InitializeComponent();
@@ -97,6 +98,22 @@ namespace P5
         {
             FormRecordIssue form = new FormRecordIssue(_CurrentAppUser);
             form.ShowDialog();
+            form.Dispose();
+        }
+
+        private void issuesModifyToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            FormSelectIssue form = new FormSelectIssue(_CurrentAppUser);
+            form.ShowDialog();
+
+            int selectedId = form.SelectedIssueId;
+
+            if (form.DialogResult == DialogResult.OK)
+            {
+                //Modify form
+                FormModifyIssue modifyForm = new FormModifyIssue(selectedId);
+            }
+
             form.Dispose();
         }
     }

@@ -27,8 +27,6 @@ namespace P5
         {
             CenterToScreen();
 
-            
-
             FakePreferenceRepository preferenceRepository = new FakePreferenceRepository();
             string preferredProjectId = preferenceRepository.GetPreference(_currentAppUser.UserName, FakePreferenceRepository.PREFERENCE_PROJECT_ID);
             _selectedProjectId = Int32.Parse(preferredProjectId);

@@ -71,11 +71,23 @@
     <Compile Include="FormDashboard.Designer.cs">
       <DependentUpon>FormDashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormModifyIssue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormModifyIssue.Designer.cs">
+      <DependentUpon>FormModifyIssue.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormRecordIssue.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormRecordIssue.Designer.cs">
       <DependentUpon>FormRecordIssue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSelectIssue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSelectIssue.Designer.cs">
+      <DependentUpon>FormSelectIssue.cs</DependentUpon>
     </Compile>
     <Compile Include="IAppUserRepository.cs" />
     <Compile Include="IIssueRepository.cs" />
@@ -136,6 +148,9 @@
     <EmbeddedResource Include="FormCreateProject.resx">
       <DependentUpon>FormCreateProject.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormModifyIssue.resx">
+      <DependentUpon>FormModifyIssue.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormModifyProject.resx">
       <DependentUpon>FormModifyProject.cs</DependentUpon>
     </EmbeddedResource>
@@ -144,6 +159,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormRemoveProject.resx">
       <DependentUpon>FormRemoveProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSelectIssue.resx">
+      <DependentUpon>FormSelectIssue.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSelectProject.resx">
       <DependentUpon>FormSelectProject.cs</DependentUpon>
