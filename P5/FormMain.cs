@@ -127,7 +127,7 @@ namespace P5
             if (form.DialogResult == DialogResult.OK)
             {
                 //Remove form
-                FormRemoveProject removeForm = new FormRemoveProject(selectedId);
+                FormRemoveProject removeForm = new FormRemoveProject(_CurrentAppUser);
             }
 
             form.Dispose();
