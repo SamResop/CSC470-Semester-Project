@@ -83,6 +83,12 @@
     <Compile Include="FormRecordIssue.Designer.cs">
       <DependentUpon>FormRecordIssue.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormRemoveIssue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRemoveIssue.Designer.cs">
+      <DependentUpon>FormRemoveIssue.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormSelectIssue.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -156,6 +162,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormRecordIssue.resx">
       <DependentUpon>FormRecordIssue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRemoveIssue.resx">
+      <DependentUpon>FormRemoveIssue.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRemoveProject.resx">
       <DependentUpon>FormRemoveProject.cs</DependentUpon>

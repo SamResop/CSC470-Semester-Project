@@ -116,5 +116,21 @@ namespace P5
 
             form.Dispose();
         }
+
+        private void issuesRemoveToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            FormSelectIssue form = new FormSelectIssue(_CurrentAppUser);
+            form.ShowDialog();
+
+            int selectedId = form.SelectedIssueId;
+
+            if (form.DialogResult == DialogResult.OK)
+            {
+                //Remove form
+                FormRemoveProject removeForm = new FormRemoveProject(selectedId);
+            }
+
+            form.Dispose();
+        }
     }
 }
