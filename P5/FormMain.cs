@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using System;
 
 namespace P5
 {
@@ -147,7 +148,38 @@ namespace P5
 
             if (form.DialogResult == DialogResult.OK)
             {
+                FormModifyFeature form2 = new FormModifyFeature(FormSelectFeature.SelectedFeatureId, _CurrentAppUser);
+                form2.ShowDialog();
 
+                form2.Dispose();
+            }
+
+            form.Dispose();
+        }
+
+        private void removeToolStripMenuItem1_Click(object sender, System.EventArgs e)
+        {
+            FormSelectFeature form = new FormSelectFeature(_CurrentAppUser);
+            form.ShowDialog();
+
+            if (form.DialogResult == DialogResult.OK)
+            {
+                FakePreferenceRepository preferenceRepository = new FakePreferenceRepository();
+                string preferredProjectId = preferenceRepository.GetPreference(_CurrentAppUser.UserName, FakePreferenceRepository.PREFERENCE_PROJECT_ID);
+                int projectId = Int32.Parse(preferredProjectId);
+
+
+                int id = FormSelectFeature.SelectedFeatureId;
+                FakeFeatureRepository featureRepository = new FakeFeatureRepository();
+
+                Feature feature = featureRepository.GetFeatureById(projectId, id);
+
+                var confirmation = MessageBox.Show("Are you sure you want to remove: " + feature.Title, "Confirmation", MessageBoxButtons.YesNo);
+
+                if (confirmation == DialogResult.Yes)
+                {
+                    string result = featureRepository.Remove(feature);
+                }
             }
 
             form.Dispose();

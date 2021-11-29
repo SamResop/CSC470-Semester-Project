@@ -42,7 +42,6 @@ namespace P5
         private void FeatureModifyAccept_Click(object sender, EventArgs e)
         {
             FakeFeatureRepository featureRepository = new FakeFeatureRepository();
-
             Feature feature = featureRepository.GetFeatureById(projectId, selectedFeatureId);
 
             newTitle = FeatureModifyTextbox.Text.Trim();

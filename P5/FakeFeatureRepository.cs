@@ -60,7 +60,15 @@ namespace P5
 
         public string Remove(Feature feature)
         {
-            return null;
+            foreach (Feature f in features)
+            {
+                if (f.Id == feature.Id && f.ProjectId == feature.ProjectId)
+                {
+                    features.Remove(f);
+                    return NO_ERROR;
+                }
+            }
+            return NOT_FOUND_ERROR;
         }
         public string Modify(Feature feature)
         {

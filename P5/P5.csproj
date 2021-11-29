@@ -98,6 +98,12 @@
     <Compile Include="FormRecordIssue.Designer.cs">
       <DependentUpon>FormRecordIssue.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormRemoveFeature.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRemoveFeature.Designer.cs">
+      <DependentUpon>FormRemoveFeature.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormRemoveIssue.cs">
       <SubType>Form</SubType>
     </Compile>

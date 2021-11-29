@@ -15,7 +15,7 @@ namespace P5
         AppUser _currentAppUser;
         int _selectedProjectId;
 
-        public int SelectedFeatureId;
+        public static int SelectedFeatureId;
 
         public FormSelectFeature(AppUser appuser)
         {
@@ -61,10 +61,7 @@ namespace P5
 
             SelectedFeatureId = Convert.ToInt32(FeatureDataGrid.Rows[index].Cells[0].Value);
 
-            FormModifyFeature form = new FormModifyFeature(SelectedFeatureId, _currentAppUser);
-            form.ShowDialog();
-
-            form.Dispose();
+ 
             this.DialogResult = DialogResult.OK;
         }
     }
