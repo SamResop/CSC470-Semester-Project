@@ -16,9 +16,35 @@ namespace P5
 
         private static List<Feature> features = new List<Feature>();
 
+        public FakeFeatureRepository()
+        {
+            if (features.Count == 0)
+            {
+                string add;
+
+                add = Add(new Feature { ProjectId = 1, Id = 1, Title = "Hello" });
+                add = Add(new Feature { ProjectId = 1, Id = 2, Title = "I Like Frogs" });
+                add = Add(new Feature { ProjectId = 1, Id = 3, Title = "Have A Good Day!" });
+                add = Add(new Feature { ProjectId = 2, Id = 1, Title = ":)" });
+                add = Add(new Feature { ProjectId = 3, Id = 1, Title = "Hello" });
+            }
+        }
+
         public string Add(Feature feature)
         {
-            return null;
+            if (feature.Title == "")
+                return EMPTY_TITLE_ERROR;
+            bool duplicate = false;
+            foreach (Feature f in features)
+            {
+                if (f.Title == feature.Title && f.ProjectId == feature.ProjectId)
+                    duplicate = true;
+            }
+            if (duplicate)
+                return DUPLICATE_TITLE_ERROR;
+
+            features.Add(feature);
+            return NO_ERROR;
         }
 
         public List<Feature> GetAll(int ProjectId)
@@ -42,5 +68,17 @@ namespace P5
         {
             return null;
         }
+
+        public int GetNextId(int projectId)
+        {
+            int currentMaxId = 0;
+            foreach (Feature f in features)
+            {
+                if (projectId == f.ProjectId)
+                    currentMaxId = f.Id;
+            }
+            return currentMaxId++;
+        }
+
     }
 }

@@ -132,5 +132,12 @@ namespace P5
 
             form.Dispose();
         }
+
+        private void createToolStripMenuItem1_Click(object sender, System.EventArgs e)
+        {
+            FormCreateFeature form = new FormCreateFeature(_CurrentAppUser);
+            form.ShowDialog();
+            form.Dispose();
+        }
     }
 }

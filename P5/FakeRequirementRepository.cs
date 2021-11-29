@@ -18,6 +18,16 @@ namespace P5
 
         private static List<Requirement> requirements = new List<Requirement>();
 
+
+        public FakeRequirementRepository()
+        {
+            if (requirements.Count == 0)
+            {
+                string add = "";
+                add = Add(new Requirement { });
+            }
+        }
+
         public string Add(Requirement requirement)
         {
             return null;
