@@ -139,5 +139,18 @@ namespace P5
             form.ShowDialog();
             form.Dispose();
         }
+
+        private void modifyToolStripMenuItem1_Click(object sender, System.EventArgs e)
+        {
+            FormSelectFeature form = new FormSelectFeature(_CurrentAppUser);
+            form.ShowDialog();
+
+            if (form.DialogResult == DialogResult.OK)
+            {
+
+            }
+
+            form.Dispose();
+        }
     }
 }

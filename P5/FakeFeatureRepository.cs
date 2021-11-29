@@ -49,7 +49,13 @@ namespace P5
 
         public List<Feature> GetAll(int ProjectId)
         {
-            return null;
+            List<Feature> returnVal = new List<Feature>();
+            foreach (Feature f in features)
+            {
+                if (f.ProjectId == ProjectId)
+                    returnVal.Add(f);
+            }
+            return returnVal;
         }
 
         public string Remove(Feature feature)
@@ -58,10 +64,35 @@ namespace P5
         }
         public string Modify(Feature feature)
         {
-            return null;
+            string title = FormModifyFeature.newTitle;
+            if (title == "")
+                return EMPTY_TITLE_ERROR;
+            bool duplicate = false;
+            foreach (Feature f in features)
+            {
+                if (f.Title == title && f.ProjectId == feature.ProjectId)
+                    duplicate = true;
+            }
+            if (duplicate)
+                return DUPLICATE_TITLE_ERROR;
+
+            foreach (Feature f in features)
+            {
+                if (f.Id == feature.Id && f.ProjectId == feature.ProjectId)
+                {
+                    f.Title = title;
+                    return NO_ERROR;
+                }
+            }
+            return NOT_FOUND_ERROR;
         }
         public Feature GetFeatureById(int projectId, int featureId)
         {
+            foreach (Feature f in features)
+            {
+                if (f.ProjectId == projectId && f.Id == featureId)
+                    return f;
+            }
             return null;
         }
         public Feature GetFeatureByTitle(int projectId, string title)
@@ -77,7 +108,7 @@ namespace P5
                 if (projectId == f.ProjectId)
                     currentMaxId = f.Id;
             }
-            return currentMaxId++;
+            return ++currentMaxId;
         }
 
     }

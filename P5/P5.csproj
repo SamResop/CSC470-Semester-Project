@@ -80,6 +80,12 @@
     <Compile Include="FormDashboard.Designer.cs">
       <DependentUpon>FormDashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormModifyFeature.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormModifyFeature.Designer.cs">
+      <DependentUpon>FormModifyFeature.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormModifyIssue.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +103,12 @@
     </Compile>
     <Compile Include="FormRemoveIssue.Designer.cs">
       <DependentUpon>FormRemoveIssue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSelectFeature.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSelectFeature.Designer.cs">
+      <DependentUpon>FormSelectFeature.cs</DependentUpon>
     </Compile>
     <Compile Include="FormSelectIssue.cs">
       <SubType>Form</SubType>
@@ -169,6 +181,9 @@
     <EmbeddedResource Include="FormCreateProject.resx">
       <DependentUpon>FormCreateProject.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormModifyFeature.resx">
+      <DependentUpon>FormModifyFeature.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormModifyIssue.resx">
       <DependentUpon>FormModifyIssue.cs</DependentUpon>
     </EmbeddedResource>
@@ -183,6 +198,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormRemoveProject.resx">
       <DependentUpon>FormRemoveProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSelectFeature.resx">
+      <DependentUpon>FormSelectFeature.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSelectIssue.resx">
       <DependentUpon>FormSelectIssue.cs</DependentUpon>
