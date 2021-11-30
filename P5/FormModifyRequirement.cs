@@ -47,7 +47,7 @@ namespace P5
             }
 
             foreach (Requirement r in requirements)
-                if (r.FeatureId == chosenFeature.Id)
+                if (r.Id == requirementId)
                     StatementTextBox.Text = r.Statement;
 
         }

@@ -35,7 +35,7 @@
             // 
             // RemoveIssueAccept
             // 
-            this.RemoveIssueAccept.Location = new System.Drawing.Point(315, 223);
+            this.RemoveIssueAccept.Location = new System.Drawing.Point(231, 133);
             this.RemoveIssueAccept.Name = "RemoveIssueAccept";
             this.RemoveIssueAccept.Size = new System.Drawing.Size(105, 43);
             this.RemoveIssueAccept.TabIndex = 0;
@@ -45,7 +45,7 @@
             // 
             // RemoveIssueCancel
             // 
-            this.RemoveIssueCancel.Location = new System.Drawing.Point(168, 223);
+            this.RemoveIssueCancel.Location = new System.Drawing.Point(84, 133);
             this.RemoveIssueCancel.Name = "RemoveIssueCancel";
             this.RemoveIssueCancel.Size = new System.Drawing.Size(105, 43);
             this.RemoveIssueCancel.TabIndex = 1;
@@ -56,7 +56,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(131, 135);
+            this.label1.Location = new System.Drawing.Point(47, 45);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(340, 20);
             this.label1.TabIndex = 2;
@@ -66,7 +66,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(637, 363);
+            this.ClientSize = new System.Drawing.Size(423, 209);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.RemoveIssueCancel);
             this.Controls.Add(this.RemoveIssueAccept);

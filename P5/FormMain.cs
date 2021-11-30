@@ -113,6 +113,7 @@ namespace P5
             {
                 //Modify form
                 FormModifyIssue modifyForm = new FormModifyIssue(selectedId);
+                modifyForm.ShowDialog();
             }
 
             form.Dispose();
@@ -128,7 +129,8 @@ namespace P5
             if (form.DialogResult == DialogResult.OK)
             {
                 //Remove form
-                FormRemoveProject removeForm = new FormRemoveProject(_CurrentAppUser);
+                FormRemoveIssue removeForm = new FormRemoveIssue(selectedId);
+                removeForm.ShowDialog();
             }
 
             form.Dispose();

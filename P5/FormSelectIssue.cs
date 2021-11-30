@@ -67,7 +67,10 @@ namespace P5
 
         private void SelectIssueButton_Click(object sender, EventArgs e)
         {
-            SelectedIssueId = CurrentIssuesGrid.SelectedRows[0].Index;
+            int index = CurrentIssuesGrid.SelectedRows[0].Index;
+
+            SelectedIssueId = Convert.ToInt32(CurrentIssuesGrid.Rows[index].Cells[0].Value);
+
             this.DialogResult = DialogResult.OK;
         }
     }

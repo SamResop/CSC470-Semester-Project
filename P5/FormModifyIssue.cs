@@ -86,7 +86,7 @@ namespace P5
             issue.IssueStatusId = statusRepository.GetIdByStatus(status);
 
             issue.ProjectId = _selectedProjectId;
-            result = issueRepository.Add(issue);
+            result = issueRepository.Modify(issue);
 
             if (result != "")
                 MessageBox.Show(result, "Error");

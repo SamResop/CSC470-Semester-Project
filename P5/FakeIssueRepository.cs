@@ -96,21 +96,31 @@ namespace P5
         }
         public bool Remove(Issue issue)
         {
-            int index = 0;
             foreach (Issue i in Issues)
             {
                 if (i.Id == issue.Id)
                 {
-                    Issues.RemoveAt(index);
+                    Issues.Remove(i);
                     return true;
                 }
-                index++;
             }
             return false;
         }
         public string Modify(Issue issue)
         {
-            return null;
+            string retValue = ValidateIssue(issue);
+
+            foreach (Issue i in Issues)
+                if (i.Id == issue.Id)
+                {
+                    i.InitialDescription = issue.InitialDescription;
+                    i.IssueStatusId = issue.IssueStatusId;
+                    i.Title = issue.Title;
+                    i.Discoverer = issue.Discoverer;
+                    i.DiscoveryDate = issue.DiscoveryDate;
+                    i.Component = issue.Component;
+                }
+            return NO_ERROR;
         }
         public int GetTotalNumberOfIssues(int ProjectId)
         {

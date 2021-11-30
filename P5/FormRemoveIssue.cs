@@ -29,9 +29,23 @@ namespace P5
             FakeIssueRepository issueRepository = new FakeIssueRepository();
             List<Issue> issues = issueRepository.GetAll();
 
+            Issue issue = new Issue();
+
             foreach (Issue i in issues)
                 if (i.Id == _selectedId)
-                    issues.Remove(i);
+                    issue = i;
+
+            bool removed = issueRepository.Remove(issue);
+            if (!removed)
+            {
+                MessageBox.Show("Issue not removed", "Error");
+                this.DialogResult = DialogResult.Cancel;
+            }
+            else
+            {
+                MessageBox.Show("Issue removed successfully");
+                this.DialogResult = DialogResult.OK;
+            }
         }
 
         private void RemoveIssueCancel_Click(object sender, EventArgs e)
