@@ -24,13 +24,53 @@ namespace P5
             if (requirements.Count == 0)
             {
                 string add = "";
-                add = Add(new Requirement { });
+                add = Add(new Requirement { ProjectId = 1, FeatureId = 1, Id = 1, Statement = "Sup"});
+                add = Add(new Requirement { ProjectId = 1, FeatureId = 1, Id = 2, Statement = "Hi" });
+                add = Add(new Requirement { ProjectId = 1, FeatureId = 2, Id = 3, Statement = "I like pizza" });
+                add = Add(new Requirement { ProjectId = 2, FeatureId = 1, Id = 1, Statement = "Sup" });
+                add = Add(new Requirement { ProjectId = 3, FeatureId = 1, Id = 1, Statement = "Sup" });
             }
         }
 
         public string Add(Requirement requirement)
         {
-            return null;
+            if (requirement.Statement == "")
+                return EMPTY_STATEMENT_ERROR;
+
+            bool duplicate = false;
+            foreach (Requirement r in requirements)
+            {
+                if (r.Statement == requirement.Statement && r.ProjectId == requirement.ProjectId)
+                    duplicate = true;
+            }
+            if (duplicate)
+                return DUPLICATE_STATEMENT_ERROR;
+
+            FakeFeatureRepository featureRepository = new FakeFeatureRepository();
+            List<Feature> features = featureRepository.GetAll(requirement.ProjectId);
+
+            bool featureExists = false;
+            foreach (Feature f in features)
+                if (f.Id == requirement.FeatureId)
+                    featureExists = true;
+            if (!featureExists)
+                return MISSING_FEATUREID_ERROR;
+
+            FakeProjectRepository projectRepository = new FakeProjectRepository();
+            List<Project> projects = projectRepository.GetAll();
+
+            bool projectExists = false;
+            foreach (Project p in projects)
+                if (p.Id == requirement.ProjectId)
+                    projectExists = true;
+            if (!projectExists)
+                return MISSING_PROJECTID_ERROR;
+
+            int id = GetNextId(requirement.ProjectId);
+            requirement.Id = id;
+
+            requirements.Add(requirement);
+            return NO_ERROR;
         }
         public List<Requirement> GetAll(int ProjectId)
         {
@@ -55,6 +95,17 @@ namespace P5
         public void RemoveByFeatureId(int featureId)
         {
 
+        }
+
+        private int GetNextId(int projectId)
+        {
+            int currentMaxId = 0;
+            foreach (Requirement r in requirements)
+            {
+                if (projectId == r.ProjectId)
+                    currentMaxId = r.Id;
+            }
+            return ++currentMaxId;
         }
     }
 }

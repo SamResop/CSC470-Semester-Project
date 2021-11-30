@@ -105,6 +105,11 @@ namespace P5
         }
         public Feature GetFeatureByTitle(int projectId, string title)
         {
+            foreach (Feature f in features)
+            {
+                if (f.ProjectId == projectId && f.Title == title)
+                    return f;
+            }
             return null;
         }
 
