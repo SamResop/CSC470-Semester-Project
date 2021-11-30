@@ -92,6 +92,12 @@
     <Compile Include="FormModifyIssue.Designer.cs">
       <DependentUpon>FormModifyIssue.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormModifyRequirement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormModifyRequirement.Designer.cs">
+      <DependentUpon>FormModifyRequirement.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormRecordIssue.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +127,12 @@
     </Compile>
     <Compile Include="FormSelectIssue.Designer.cs">
       <DependentUpon>FormSelectIssue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSelectRequirement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSelectRequirement.Designer.cs">
+      <DependentUpon>FormSelectRequirement.cs</DependentUpon>
     </Compile>
     <Compile Include="IAppUserRepository.cs" />
     <Compile Include="IFeatureRepository.cs" />
@@ -199,6 +211,9 @@
     <EmbeddedResource Include="FormModifyProject.resx">
       <DependentUpon>FormModifyProject.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormModifyRequirement.resx">
+      <DependentUpon>FormModifyRequirement.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormRecordIssue.resx">
       <DependentUpon>FormRecordIssue.cs</DependentUpon>
     </EmbeddedResource>
@@ -216,6 +231,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSelectProject.resx">
       <DependentUpon>FormSelectProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSelectRequirement.resx">
+      <DependentUpon>FormSelectRequirement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

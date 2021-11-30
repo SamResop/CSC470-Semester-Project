@@ -27,8 +27,8 @@ namespace P5
                 add = Add(new Requirement { ProjectId = 1, FeatureId = 1, Id = 1, Statement = "Sup"});
                 add = Add(new Requirement { ProjectId = 1, FeatureId = 1, Id = 2, Statement = "Hi" });
                 add = Add(new Requirement { ProjectId = 1, FeatureId = 2, Id = 3, Statement = "I like pizza" });
-                add = Add(new Requirement { ProjectId = 2, FeatureId = 1, Id = 1, Statement = "Sup" });
-                add = Add(new Requirement { ProjectId = 3, FeatureId = 1, Id = 1, Statement = "Sup" });
+                add = Add(new Requirement { ProjectId = 2, FeatureId = 1, Id = 4, Statement = "Sup" });
+                add = Add(new Requirement { ProjectId = 3, FeatureId = 1, Id = 5, Statement = "Sup" });
             }
         }
 
@@ -74,7 +74,11 @@ namespace P5
         }
         public List<Requirement> GetAll(int ProjectId)
         {
-            return null;
+            List<Requirement> reqs = new List<Requirement>();
+            foreach (Requirement r in requirements)
+                if (ProjectId == r.ProjectId)
+                    reqs.Add(r);
+            return reqs;
         }
         public string Remove(Requirement requirement)
         {
@@ -82,7 +86,45 @@ namespace P5
         }
         public string Modify(Requirement requirement)
         {
-            return null;
+            if (requirement.Statement == "")
+                return EMPTY_STATEMENT_ERROR;
+
+            bool duplicate = false;
+            foreach (Requirement r in requirements)
+            {
+                if (r.Statement == requirement.Statement && r.ProjectId == requirement.ProjectId && r.FeatureId == requirement.FeatureId)
+                    duplicate = true;
+            }
+            if (duplicate)
+                return DUPLICATE_STATEMENT_ERROR;
+
+            FakeFeatureRepository featureRepository = new FakeFeatureRepository();
+            List<Feature> features = featureRepository.GetAll(requirement.ProjectId);
+
+            bool featureExists = false;
+            foreach (Feature f in features)
+                if (f.Id == requirement.FeatureId)
+                    featureExists = true;
+            if (!featureExists)
+                return MISSING_FEATUREID_ERROR;
+
+            FakeProjectRepository projectRepository = new FakeProjectRepository();
+            List<Project> projects = projectRepository.GetAll();
+
+            bool projectExists = false;
+            foreach (Project p in projects)
+                if (p.Id == requirement.ProjectId)
+                    projectExists = true;
+            if (!projectExists)
+                return MISSING_PROJECTID_ERROR;
+
+            foreach (Requirement r in requirements)
+                if (requirement.Id == r.Id && requirement.ProjectId == r.ProjectId)
+                {
+                    r.Statement = requirement.Statement;
+                    r.FeatureId = requirement.FeatureId;
+                }
+            return NO_ERROR;
         }
         public Requirement GetRequirementById(int requirementId)
         {

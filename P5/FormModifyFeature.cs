@@ -48,13 +48,13 @@ namespace P5
 
             string result = featureRepository.Modify(feature);
 
-            if (result != "")
+            if (result == "")
             {
-                MessageBox.Show(result, "Error");
-                this.DialogResult = DialogResult.Cancel;
+                this.DialogResult = DialogResult.OK;
             }
-
-            this.DialogResult = DialogResult.OK;
+            else
+                MessageBox.Show(result, "Error");
+ 
         }
     }
 }
