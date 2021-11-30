@@ -82,7 +82,13 @@ namespace P5
         }
         public string Remove(Requirement requirement)
         {
-            return null;
+            foreach (Requirement r in requirements)
+                if (r.Id == requirement.Id)
+                {
+                    requirements.Remove(r);
+                    return NO_ERROR;
+                }
+            return REQUIREMENT_NOT_FOUND_ERROR;
         }
         public string Modify(Requirement requirement)
         {
@@ -128,15 +134,24 @@ namespace P5
         }
         public Requirement GetRequirementById(int requirementId)
         {
+            foreach (Requirement r in requirements)
+                if (r.Id == requirementId)
+                    return r;
             return null;
         }
         public int CountByFeatureId(int featureId)
         {
-            return 0;
+            int count = 0;
+            foreach (Requirement r in requirements)
+                if (featureId == r.FeatureId)
+                    count++;
+            return count;
         }
         public void RemoveByFeatureId(int featureId)
         {
-
+            foreach (Requirement r in requirements)
+                if (featureId == r.FeatureId)
+                    requirements.Remove(r);
         }
 
         private int GetNextId(int projectId)

@@ -178,7 +178,25 @@ namespace P5
 
                 if (confirmation == DialogResult.Yes)
                 {
-                    string result = featureRepository.Remove(feature);
+                    FakeRequirementRepository requirementRepository = new FakeRequirementRepository();
+
+                    int requirementAmount = requirementRepository.CountByFeatureId(feature.Id);     //Check for requirements
+                    if (requirementAmount > 0)
+                    {
+                        var confirmRequirement = MessageBox.Show("There are one or more requirements associated with this feature. These requirements will be destroyed if you remove this feature. Are you sure you want to remove: " + feature.Title, "Confirmation", MessageBoxButtons.YesNo);
+                        if (confirmRequirement == DialogResult.Yes)
+                        {
+                            string result = featureRepository.Remove(feature);
+                            if (result != "")
+                                MessageBox.Show(result, "Error");
+                        }
+                    }
+                    else
+                    {
+                        string result = featureRepository.Remove(feature);
+                        if (result != "")
+                            MessageBox.Show(result, "Error");
+                    }
                 }
             }
 
@@ -206,6 +224,40 @@ namespace P5
             }
 
             form.Dispose();
+        }
+
+        private void removeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormSelectRequirement form = new FormSelectRequirement(_CurrentAppUser);
+            form.ShowDialog();
+
+            if (form.DialogResult == DialogResult.OK)
+            {
+                FakePreferenceRepository preferenceRepository = new FakePreferenceRepository();
+                string preferredProjectId = preferenceRepository.GetPreference(_CurrentAppUser.UserName, FakePreferenceRepository.PREFERENCE_PROJECT_ID);
+                int projectId = Int32.Parse(preferredProjectId);
+
+                int RequirementId = FormSelectRequirement.SelectedRequirementId;
+                string featureTitle = FormSelectRequirement.SelectedFeature;
+
+                FakeRequirementRepository requirementRepository = new FakeRequirementRepository();
+                Requirement requirement = requirementRepository.GetRequirementById(RequirementId);
+
+//                FakeFeatureRepository featureRepository = new FakeFeatureRepository();
+//                Feature feature = featureRepository.GetFeatureByTitle(projectId, featureTitle);
+
+                var confirmation = MessageBox.Show("Are you sure you want to remove: " + requirement.Statement, "Confirmation", MessageBoxButtons.YesNo);
+
+                if (confirmation == DialogResult.Yes)
+                {
+                    string result = requirementRepository.Remove(requirement);
+
+                    if (result != "")
+                        MessageBox.Show(result, "Error");
+                }
+
+                form.Dispose();
+            }
         }
     }
 }
